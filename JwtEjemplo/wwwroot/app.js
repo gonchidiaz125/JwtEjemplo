@@ -15,9 +15,9 @@
             if (response.ok) {
                 const data = await response.json();
                 localStorage.setItem('token', data.token);
-                alert('Login successful!');
+                alert('Login exitoso!');
             } else {
-                alert('Login failed!');
+                alert('Error al hacer al login!');
             }
         } catch (error) {
             console.error('Error:', error);
@@ -38,39 +38,16 @@
 
             if (response.ok) {
                 const data = await response.json();
-                alert(`Secure data: ${data.message}`);
+                alert(`Datos de la persona: ${JSON.stringify(data)}`);
             } else {
-                alert('Failed to fetch secure data!');
+                alert('Error al tratar de acceder a un endpoint que requiere autenticación');
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('An error occurred while fetching persona1 data.');
+            alert('Error al tratar de acceder a un endpoint que requiere autenticación');
         }
     });
-
-    $('#btnPersona2').on('click', async function () {
-        const token = localStorage.getItem('token');
-
-        try {
-            const response = await fetch('https://localhost:7088/api/Personas/persona2', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                alert(`Secure data: ${data.message}`);
-            } else {
-                alert('Failed to fetch secure data!');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('An error occurred while fetching persona2 data.');
-        }
-    });
-
+    
     $('#btnPersonaPublica').on('click', async function () {
         try {
             const response = await fetch('https://localhost:7088/api/Personas/personaPublica', {
@@ -78,14 +55,14 @@
             });
 
             if (response.ok) {
-                const data = await response.json();
-                alert(`Secure data: ${data.message}`);
+                const data = await response.json();                
+                alert(`Datos de la persona pública: ${JSON.stringify(data)}`);
             } else {
-                alert('Failed to fetch secure data!');
+                alert('Error al acceder al endpoint');
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('An error occurred while fetching public data.');
+            alert('Ocurrió un error al acceder a los datos.');
         }
     });
 

@@ -50,6 +50,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Agrego Auth con JWT
 app.UseAuthentication();
 app.UseAuthorization();
 
